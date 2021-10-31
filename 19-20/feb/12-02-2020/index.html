@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Components</title>
+</head>
+<body>
+<my-component></my-component>
+
+<div id="example">This will use the CSS background</div>
+<button id="button">Not tomato</button>
+
+<template id="book-template">
+  <li><span class="title"></span> &mdash; <span class="author"></span></li>
+</template>
+
+<template id="book-template-2">
+  <li><span class="author"></span>'s classic novel <span class="title"></span></li>
+</template>
+
+<ul id="books"></ul>
+
+<fieldset id="templates">
+  <legend>Pick one template</legend>
+
+  <label for="tmpltOld">
+    <input type="radio" id="tmpltOld" name="template" value="book-template"> Old template
+  </label>
+  <label for="tmpltNew">
+    <input type="radio" id="tmpltNew" name="template" value="book-template-2"> New template
+  </label>
+</fieldset>
+
+<script src="js/index.js"></script>
+</body>
+</html>

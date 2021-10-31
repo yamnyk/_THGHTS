@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web components part-II</title>
+</head>
+<body>
+
+<template id="oneDialog">
+  <script>
+    document.getElementById('launch-dialog').addEventListener('click', e => {
+      const wrapper = document.querySelector('.wrapper');
+      const closeButton = document.querySelector('button.close');
+      const wasFocused = document.activeElement;
+      wrapper.classList.add('open');
+      closeButton.focus();
+      closeButton.addEventListener('click', () => {
+        wrapper.classList.remove('open');
+        wasFocused.focus();
+      });
+    })
+  </script>
+  <style>
+    .wrapper {
+      opacity: 0;
+      transition: visibility 0s, opacity 0.25s ease-in;
+    }
+    .wrapper:not(.open) {
+      visibility: hidden;
+    }
+    .wrapper.open {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+    .overlay {
+      background: rgba(0, 0, 0, 0.8);
+      height: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+    .dialog {
+      background: #ffffff;
+      max-width: 600px;
+      padding: 1rem;
+      position: fixed;
+    }
+    button {
+      all: unset;
+      cursor: pointer;
+      font-size: 1.25rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    button:focus {
+      border: 2px solid blue;
+    }
+  </style>
+  <div class="wrapper">
+    <div class="overlay"></div>
+    <div class="dialog" role="dialog" aria-labelledby="title" aria-describedby="content">
+      <button class="close" aria-label="Close">&#x2716;&#xfe0f;</button>
+      <h1 id="title">Hello world</h1>
+      <div id="content" class="content">
+        <p>This is content in the body of our modal</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="modal">
+  <h1>Hello, filthy animal!</h1>
+</template>
+
+<!--<template id="alertBtn">-->
+<!--  <script>-->
+<!--    const button = document.getElementById('logEvent');-->
+<!--    button.addEventListener('click', e => console.log(e));-->
+<!--  </script>-->
+<!--  <style>-->
+<!--    button {-->
+<!--      border: none;-->
+<!--      border-radius: 3px;-->
+<!--      background-color: teal;-->
+<!--      color: white;-->
+<!--    }-->
+<!--  </style>-->
+<!--  <button id="logEvent">Log click event</button>-->
+<!--</template>-->
+<button id="launch-dialog">Launch dialog</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
